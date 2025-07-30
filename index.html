@@ -11,8 +11,8 @@
       <div class="nav-left">
         <a href="index.html">Home</a>
         <a href="#about">About Us</a>
-        <a href="#">Services</a>
-        <a href="#">Contact Us</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact Us</a>
       </div>
       <div class="nav-right">
         <a href="signin.html">Sign In</a>
@@ -49,6 +49,59 @@
           Let us help you plan your next great event. Because for us, every
           event is a story waiting to be told.
         </p>
+        <h3>☎️ Contact Number : 9876543214</h3>
+      </div>
+    </section>
+
+    <section id="services" class="services-section">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="../wedding.jpg" alt="Wedding Events" />
+          <h3>Wedding Events</h3>
+          <p>
+            We plan and design elegant, memorable weddings tailored to your
+            dream.
+          </p>
+        </div>
+        <div class="service-card">
+          <img src="../retirement.jpg" alt="Corporate Events" />
+          <h3>Retirement</h3>
+          <p>
+            Celebrate a lifetime of dedication with a memorable retirement
+            event.
+          </p>
+        </div>
+        <div class="service-card">
+          <img src="../birthday.jpg" alt="Birthday Parties" />
+          <h3>Birthday Parties</h3>
+          <p>Fun, theme-based birthday party planning for all age groups.</p>
+        </div>
+        <div class="service-card">
+          <img src="../live.jpg" alt="Concerts & Shows" />
+          <h3>Concerts & Shows</h3>
+          <p>
+            Live concerts, fashion shows, and large-scale entertainment events.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form action="contact.php" method="POST" class="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="text" name="subject" placeholder="Subject" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
       </div>
     </section>
   </body>
