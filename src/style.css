@@ -12,19 +12,19 @@ body {
   scroll-behavior: smooth;
 }
 
-/* DEFAULT BACKGROUND (used for index/about/services) */
+/* BACKGROUND  */
 body {
   padding-top: 70px;
-  background-color: #f2f2f2;
+  background-color: skyblue;
 }
 
 /* PAGE-SPECIFIC BACKGROUNDS */
 .signup-page {
-  background-color: #fce4ec; /* light pink */
+  background-color: beige;
 }
 
 .signin-page {
-  background-color: #e0f7fa; /* light blue */
+  background-color: lavender;
 }
 
 /* NAVBAR */
@@ -54,7 +54,7 @@ body {
 
 .nav-left a:hover,
 .nav-right a:hover {
-  background-color: #575757;
+  background-color: gray;
   border-radius: 4px;
   color: white;
 }
@@ -72,7 +72,7 @@ body {
   align-items: center;
   color: white;
   text-align: center;
-  padding-top: 70px; /* offset for navbar */
+  padding-top: 70px;
 }
 
 .hero-section h1 {
@@ -118,7 +118,7 @@ h1 {
 form,
 table {
   margin: 30px auto;
-  background-color: rgba(137, 43, 226, 0.2); /* light purple */
+  background-color: rgba(137, 43, 226, 0.2);
   padding: 25px 30px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

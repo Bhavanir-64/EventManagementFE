@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../src/style.css" />
   </head>
   <body class="signup-page">
-      <nav class="navbar">
+    <nav class="navbar">
       <div class="nav-left">
         <a href="index.html">Home</a>
         <a href="#">About Us</a>
@@ -19,10 +19,10 @@
         <a href="signup.html">Sign Up</a>
       </div>
     </nav>
-    </div>
+
     <div>
       <h1>Signup</h1>
-      <div >
+      <div>
         <table>
           <tr>
             <td>
@@ -71,14 +71,56 @@
               <input
                 type="text"
                 name="Password"
-                placeholder="Enter mobile number"
+                placeholder="Enter password"
                 required
               />
             </td>
           </tr>
         </table>
       </div>
-      <button>Submit</button>
+      <button id="signupBtn" type="button">Submit</button>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        localStorage.removeItem("loggedInUser");
+        document
+          .getElementById("signupBtn")
+          .addEventListener("click", function () {
+            const nameInput = document.querySelector("input[name='name']");
+            const emailInput = document.querySelector("input[name='Emailid']");
+            const mobileInput = document.querySelector(
+              "input[name='Mobile number']"
+            );
+            const passwordInput = document.querySelector(
+              "input[name='Password']"
+            );
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const mobile = mobileInput.value.trim();
+            const password = passwordInput.value.trim();
+            if (!name || !email || !mobile || !password) {
+              alert("Please fill in all the fields.");
+            } else if (localStorage.getItem("user_" + email)) {
+              alert("This email is already registered. Please use another.");
+            } else {
+              const userData = {
+                name,
+                email,
+                mobile,
+                password,
+              };
+              localStorage.setItem("user_" + email, JSON.stringify(userData));
+              alert("Signup successful! Your data has been saved locally.");
+              window.location.href = "signin.html";
+            }
+            nameInput.value = "";
+            emailInput.value = "";
+            mobileInput.value = "";
+            passwordInput.value = "";
+          });
+      });
+    </script>
   </body>
 </html>

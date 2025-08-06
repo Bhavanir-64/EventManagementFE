@@ -39,7 +39,52 @@
           </td>
         </tr>
       </table>
-      <button>Login</button>
+      <button id="loginBtn">Login</button>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("loginBtn")
+          .addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const emailInput = document.querySelector("input[name='Emailid']");
+            const passwordInput = document.querySelector(
+              "input[name='Password']"
+            );
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+              alert("Please enter both email and password.");
+              return;
+            }
+
+            const storedUser = localStorage.getItem("user_" + email);
+
+            if (!storedUser) {
+              alert("User not found. Please sign up first.");
+              emailInput.value = "";
+              passwordInput.value = "";
+              return;
+            }
+
+            const userData = JSON.parse(storedUser);
+
+            if (userData.password === password) {
+              alert("Login successful!");
+              localStorage.setItem("loggedInUser", email);
+              emailInput.value = "";
+              passwordInput.value = "";
+              window.location.href = "index.html";
+            } else {
+              alert("Incorrect password. Please try again.");
+              passwordInput.value = "";
+            }
+          });
+      });
+    </script>
   </body>
 </html>

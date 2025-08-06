@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Management</title>
     <link rel="stylesheet" href="../src/style.css" />
+    <style>
+      .auth-required {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -14,11 +19,12 @@
         <a href="#services">Services</a>
         <a href="#contact">Contact Us</a>
       </div>
-      <div class="nav-right">
+      <div class="nav-right" id="nav-right">
         <a href="signin.html">Sign In</a>
         <a href="signup.html">Sign Up</a>
       </div>
     </nav>
+
     <div class="hero-section">
       <!-- <h1>EVENT PLANNING</h1>
       <p>WEDDINGS / PARTIES / BUSINESS</p> -->
@@ -28,7 +34,7 @@
       <h1>Event Management</h1>
     </div> -->
 
-    <section id="about" class="about-section">
+    <section id="about" class="about-section auth-required">
       <div class="about-container">
         <h2>About Us</h2>
         <p>
@@ -53,7 +59,7 @@
       </div>
     </section>
 
-    <section id="services" class="services-section">
+    <section id="services" class="services-section auth-required">
       <h2>Our Services</h2>
       <div class="services-grid">
         <div class="service-card">
@@ -87,7 +93,7 @@
       </div>
     </section>
 
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section auth-required">
       <div class="contact-container">
         <h2>Contact Us</h2>
         <form action="contact.php" method="POST" class="contact-form">
@@ -104,5 +110,55 @@
         </form>
       </div>
     </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loggedInUser = localStorage.getItem("loggedInUser");
+
+        const aboutSection = document.getElementById("about");
+        const servicesSection = document.getElementById("services");
+        const contactSection = document.getElementById("contact");
+        const navLeft = document.querySelector(".nav-left");
+        const navRight = document.getElementById("nav-right");
+        const currentPage = window.location.pathname.split("/").pop();
+
+        if (!loggedInUser) {
+          if (aboutSection) aboutSection.style.display = "none";
+          if (servicesSection) servicesSection.style.display = "none";
+          if (contactSection) contactSection.style.display = "none";
+
+          if (currentPage === "signin.html" || currentPage === "signup.html") {
+            if (navLeft) navLeft.style.display = "none";
+            navRight.innerHTML = `
+              <a href="signin.html">Sign In</a>
+              <a href="signup.html">Sign Up</a>
+            `;
+          } else {
+            if (navLeft) navLeft.style.display = "none";
+            navRight.innerHTML = `
+              <a href="signin.html">Sign In</a>
+              <a href="signup.html">Sign Up</a>
+            `;
+          }
+        } else {
+          if (aboutSection) aboutSection.style.display = "block";
+          if (servicesSection) servicesSection.style.display = "block";
+          if (contactSection) contactSection.style.display = "block";
+          if (navLeft) navLeft.style.display = "flex";
+          const logoutBtn = document.createElement("a");
+          logoutBtn.textContent = "Logout";
+          logoutBtn.href = "#";
+          logoutBtn.style.marginLeft = "15px";
+          logoutBtn.style.color = "red";
+          logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            alert("You have been logged out.");
+            window.location.href = "signin.html";
+          });
+          navRight.innerHTML = "";
+          navRight.appendChild(logoutBtn);
+        }
+      });
+    </script>
   </body>
 </html>
